@@ -1,27 +1,25 @@
 import Card from "./Card"
 import { useState, useEffect } from "react";
+import { fetchData } from "./pokemonFns";
 
 function App() {
-  const [pokemon, setPokemon] = useState({})
-
-  async function fetchData () {
-    try {
-      const pokemonFetch = await fetch("https://pokeapi.co/api/v2/pokemon/1/");
-      const somePokemon = await pokemonFetch.json()
-      setPokemon(somePokemon)
-    } catch {
-      console.log("Nope")
-    }
-  }
+  const [pokemonList, setPokemonList] = useState([])
 
   useEffect(() => {
-    fetchData(); 
+    
+    const pokemonArray = fetchData();
+
+    setPokemonList(pokemonArray)
   }, [])
 
 
   return (
     <>
-      <Card name={pokemon.name}></Card>
+      {pokemonList.map( (pokemon)  => {
+        return  (
+        <Card key={pokemon.id} name={pokemon.name} url={pokemon.url}></Card>
+      )
+      })}
     </>
   )
 }
