@@ -6,10 +6,14 @@ function App() {
   const [pokemonList, setPokemonList] = useState([])
 
   useEffect(() => {
-    
-    const pokemonArray = fetchData();
 
-    setPokemonList(pokemonArray)
+    (async () => {
+      const pokemonArray = await fetchData();
+
+      setPokemonList(pokemonArray)
+    })()
+    
+
   }, [])
 
 
