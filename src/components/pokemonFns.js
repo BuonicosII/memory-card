@@ -7,7 +7,7 @@ async function fetchData () {
             const pokemonFetch = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
             const somePokemon = await pokemonFetch.json()
       
-            return {id: somePokemon.id, name: somePokemon.name, url: somePokemon.sprites.front_default}
+            return {id: somePokemon.id, name: somePokemon.name, url: somePokemon.sprites.other["official-artwork"].front_default}
           } catch {
             console.log("Nope")
           }
