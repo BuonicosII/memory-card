@@ -4,6 +4,8 @@ import { fetchData } from "./pokemonFns";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([])
+  const [points, setPoints] = useState(0);
+  const [bestScore, setBestScore] = useState(0)
 
   useEffect(() => {
 
@@ -30,13 +32,29 @@ function App() {
 
 
   return (
-    <div className="cardHolder">
-      {pokemonList.map( (pokemon)  => {
-        return  (
-        <Card key={pokemon.id} name={pokemon.name} url={pokemon.url} fn={shuffleCards}></Card>
-      )
-      })}
-    </div>
+    <>
+      <div>
+        <p>Score: {points}</p>
+        <p>BestScore: {bestScore}</p>
+      </div>
+      <div className="cardHolder">
+        {pokemonList.map( (pokemon)  => {
+          return  (
+          <Card 
+            key={pokemon.id} 
+            name={pokemon.name} 
+            url={pokemon.url} 
+            shuffle={shuffleCards}
+            points={points} 
+            setPoints={setPoints}
+            bestScore={bestScore} 
+            setBestScore={setBestScore}>
+          </Card>
+        )
+        })}
+      </div>
+    </>
+
   )
 }
 
