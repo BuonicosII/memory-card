@@ -43,7 +43,8 @@ function App() {
           <Card 
             key={pokemon.id} 
             name={pokemon.name} 
-            url={pokemon.url} 
+            url={pokemon.url}
+            type={pokemon.mainType} 
             shuffle={shuffleCards}
             points={points} 
             setPoints={setPoints}
