@@ -48,7 +48,6 @@ function App() {
         <h2>Score: {points}</h2>
         <h2>BestScore: {bestScore}</h2>
       </div>
-      {points === 12 && <Popup fn={newGame}></Popup>}
       <div className="cardHolder">
         {pokemonList.map( (pokemon)  => {
           return  (
@@ -65,6 +64,7 @@ function App() {
           </Card>
         )
         })}
+        {points === 12 && <Popup fn={newGame}></Popup>}
       </div>
     </>
 
