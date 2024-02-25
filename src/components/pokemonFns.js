@@ -1,8 +1,7 @@
-const idArray = [25, 1, 32, 76, 150, 13, 89, 52, 66, 35, 5, 55]
 
-async function fetchData () {
+async function fetchData (array) {
 
-    const pokemonArray = await Promise.all(idArray.map(async (id) => {
+    const pokemonArray = await Promise.all(array.map(async (id) => {
         try {
             const pokemonFetch = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
             const somePokemon = await pokemonFetch.json()
@@ -17,4 +16,21 @@ async function fetchData () {
 
 }
 
-export { fetchData }
+function randomNumbers () {
+  const numbers = []
+
+  for (let i = 0; i < 12; i++) {
+    let num = Math.floor(Math.random() * 151) + 1;
+
+    while (numbers.includes(num)) {
+      num = Math.floor(Math.random() * 151) + 1;
+    }
+
+    numbers.push(num)
+  }
+
+  return numbers
+
+}
+
+export { fetchData, randomNumbers }

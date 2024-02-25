@@ -1,6 +1,6 @@
 import Card from "./Card"
 import { useState, useEffect } from "react";
-import { fetchData } from "./pokemonFns";
+import { fetchData, randomNumbers } from "./pokemonFns";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([])
@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
 
     (async () => {
-      const pokemonArray = await fetchData();
+      const pokemonArray = await fetchData(randomNumbers());
 
       setPokemonList(pokemonArray)
     })()
@@ -33,9 +33,9 @@ function App() {
 
   return (
     <>
-      <div>
-        <p>Score: {points}</p>
-        <p>BestScore: {bestScore}</p>
+      <div id="scoreBoard">
+        <h2>Score: {points}</h2>
+        <h2>BestScore: {bestScore}</h2>
       </div>
       <div className="cardHolder">
         {pokemonList.map( (pokemon)  => {

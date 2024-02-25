@@ -103,11 +103,10 @@ export default function Card ({name, url, shuffle, type, setPoints, points, setB
 
     return (
         <div className="card" onClick={clickOnCard} style={{backgroundImage: "linear-gradient(135deg, rgba(255,255,255,1) 0%, " +  color + " 35%, rgba(255,255,255,1) 100%)"}}>
-            <h2>{name.slice(0, 1).toUpperCase() + name.slice(1)}</h2>
-            <div>
-                <img src={url}></img>
+            <div className="nameHolder">
+                <h2>{name.slice(0, 1).toUpperCase() + name.slice(1)}</h2>
             </div>
-
+            <img src={url}></img>
         </div>
     )
 
