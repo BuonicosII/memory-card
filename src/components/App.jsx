@@ -1,6 +1,7 @@
 import Card from "./Card"
 import { useState, useEffect } from "react";
 import { fetchData, randomNumbers } from "./pokemonFns";
+import { Popup } from "./Popup";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([])
@@ -30,6 +31,16 @@ function App() {
     setPokemonList(shuffledArray)
   }
 
+  function newGame() {
+    setBestScore(0);
+    setPoints(0);
+    (async () => {
+      const pokemonArray = await fetchData(randomNumbers());
+
+      setPokemonList(pokemonArray)
+    })()
+  }
+
 
   return (
     <>
@@ -37,6 +48,7 @@ function App() {
         <h2>Score: {points}</h2>
         <h2>BestScore: {bestScore}</h2>
       </div>
+      {points === 12 && <Popup fn={newGame}></Popup>}
       <div className="cardHolder">
         {pokemonList.map( (pokemon)  => {
           return  (
