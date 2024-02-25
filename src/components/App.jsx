@@ -9,13 +9,19 @@ function App() {
   const [bestScore, setBestScore] = useState(0)
 
   useEffect(() => {
+    let ignore = false;
 
     (async () => {
       const pokemonArray = await fetchData(randomNumbers());
+      if (!ignore) {
+        setPokemonList(pokemonArray)
+      }
 
-      setPokemonList(pokemonArray)
     })()
     
+    return () => {
+      ignore = true
+    };
 
   }, [])
 
